@@ -1,0 +1,16 @@
+- name: Windows STIG Evaluation (Step 1)
+  hosts: windows_nodes
+  tasks:
+    - name: Run Evaluate-STIG PowerShell script
+      ansible.windows.win_shell: |
+        .\Evaluate-STIG.ps1 -Scenario ScanOnly
+      args:
+        chdir: C:\Temp\Evaluate-STIG\
+      register: scan_output
+
+    - name: Fetch the .ckl file back to the Control Node
+      ansible.windows.win_get_url:
+        # Assuming the script outputs a file named after the hostname
+        url: "C:\\Temp\\Evaluate-STIG\\Results\\{{ inventory_hostname }}.ckl"
+        dest: "../reports/{{ inventory_hostname }}.ckl"
+        flat: yes
