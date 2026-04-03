@@ -1,2 +1,10 @@
 ---
-# Add external roles here
+---
+# Official Red Hat STIG Roles (from Galaxy)
+- name: RedHatOfficial.rhel8_stig
+- name: RedHatOfficial.rhel9_stig
+
+# Community Standard for Windows (from GitHub)
+- name: https://github.com/ansible-lockdown/Windows-2022-STIG
+  scm: git
+  version: main

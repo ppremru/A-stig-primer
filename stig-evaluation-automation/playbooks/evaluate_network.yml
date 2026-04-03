@@ -1,0 +1,13 @@
+- name: Network Config Pull for Offline STIG
+  hosts: cisco_switches
+  gather_facts: no
+  tasks:
+    - name: Get Running Config
+      cisco.ios.ios_command:
+        commands: show running-config
+      register: config_output
+
+    - name: Save config for SCC Offline Scanning
+      ansible.builtin.copy:
+        content: "{{ config_output.stdout[0] }}"
+        dest: "../reports/{{ inventory_hostname }}_config.txt"

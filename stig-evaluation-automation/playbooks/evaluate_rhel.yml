@@ -1,0 +1,9 @@
+- name: RHEL STIG Evaluation (Step 1)
+  hosts: rhel_servers
+  become: yes
+  vars:
+    # This tells the role to SCAN, not FIX
+    compliance_remediate: false
+    compliance_profile: xccdf_org.ssgproject.content_profile_stig
+  roles:
+    - fedora.linux_system_roles.compliance
