@@ -1,0 +1,5 @@
+---
+collections:
+  - name: fedora.linux_system_roles
+  - name: ansible.windows
+  - name: cisco.ios
